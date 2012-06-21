@@ -13,7 +13,7 @@ $ npm install hookio-scaffold -g
 ## Usage
 
 ```
-Usage: main.js [options] [command]
+Usage: hookio-scaffold [options] [command]
 
 Commands:
 
