@@ -4,8 +4,6 @@ A small collection of CLI helpers for building apps with hook.io
 
 ## Install
 
-_Not yet published to npm_
-
 ```bash
 $ npm install hookio-scaffold -g
 ```
