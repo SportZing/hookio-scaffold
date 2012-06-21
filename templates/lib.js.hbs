@@ -1,0 +1,40 @@
+
+var Hook  = require('hook.io').Hook;
+var util  = require('util');
+
+var {{{capitalized}}}Hook = exports.{{{capitalized}}}Hook = function(options) {
+	Hook.call(this, options);
+	
+	// Load configuration
+	this.config.use('file', { file: './config.json' });
+	this.conf = this.config.get('{{{hyphenated}}}');
+	
+	// Bind event listeners
+	this.on('hook::ready', function() {
+		
+		/**
+		 * Event listener
+		 *
+		 * @param   function  callback
+		 */
+		this.on('', function(callback) {
+			
+		}.bind(this));
+		
+	}.bind(this));
+};
+
+util.inherits({{{capitalized}}}Hook, Hook);
+
+/**
+ * Do something
+ * 
+ * @access  public
+ * @return  void
+ */
+{{{capitalized}}}Hook.prototype.doSomething = function() {
+	
+};
+
+/* End of file {{{hyphenated}}}.js */
+/* Location: ./{{{hyphenated}}}/lib/{{{hyphenated}}}.js */
