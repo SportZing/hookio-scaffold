@@ -29,9 +29,9 @@ program
 	.action(function(hookName) {
 		parseOptions();
 		output.log('Creating hook "' + hookName + '"...');
-		scaffold.createHook(hookName, function(err) {
+		scaffold.createHook(hookName, process.cwd(), function(err) {
 			if (err) {throw err;}
-			output.log('Hook created successfully'.green);
+			output.log('Hook created successfully.'.green);
 		});
 	});
 
