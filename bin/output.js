@@ -7,34 +7,36 @@ var conf = exports.conf = {
 	silent: false
 };
 
-exports.log = function() {
-	var str = format(arguments);
-	output('log', str);
+var colors = exports.colors = {
+	log: null,
+	warn: 'yellow',
+	error: 'red'
 };
 
-exports.warn = function() {
-	var str = format(arguments);
-	if (conf.colors) {
-		str = str.yellow;
-	}
-	output('warn', str);
-};
-
-exports.error = function(what) {
-	var str = format(arguments);
-	if (conf.colors) {
-		str = str.red;
-	}
-	output('error', str);
-};
+['log', 'warn', 'error'].forEach(function(func) {
+	exports[func] = function() {
+		output(func, format(func, arguments, '\n'));
+	};
+	exports[func].nolf = function() {
+		output(func, format(func, arguments, ''));
+	};
+});
 
 function output(type, what) {
 	if (! conf.silent) {
-		console[type](what);
+		if (type === 'error') {
+			process.stderr.write(what);
+		} else {
+			process.stdout.write(what);
+		}
 	}
 }
 
-function format(args) {
-	return util.format.apply(util, args);
+function format(type, args, ending) {
+	var str = util.format.apply(util, args) + (ending || '');
+	if (conf.colors && colors[type]) {
+		str = str[colors[type]];
+	}
+	return str;
 }
 

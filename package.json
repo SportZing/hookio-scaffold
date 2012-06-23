@@ -2,13 +2,13 @@
   "author": "James Brumond <james@sportzing.com> (http://jbrumond.me)",
   "name": "hookio-scaffold",
   "description": "A small collection of CLI helpers for building apps with hook.io",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/SportZing/hookio-scaffold.git"
   },
   "bin": {
-    "hookio-scaffold": "bin/main.js"
+    "hios": "bin/main.js"
   },
   "main": "lib/index.js",
   "dependencies": {
