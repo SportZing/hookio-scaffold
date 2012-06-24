@@ -15,7 +15,8 @@
     "colors": "0.6.0-1",
     "commander": "0.6.1",
     "async": "0.1.22",
-    "handlebars": "1.0.5beta"
+    "handlebars": "1.0.5beta",
+    "ansiparse": "0.0.5-1"
   },
   "devDependencies": {},
   "optionalDependencies": {},
