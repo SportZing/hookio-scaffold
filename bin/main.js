@@ -8,7 +8,7 @@ var output    = require('./output');
 // Handle Error Outputting
 process.on('uncaughtException', function(err) {
 	if (err instanceof Error) {
-		err = 1//(program.stack)
+		err = (program.stack)
 			? err.stack
 			: err.name + ': ' + err.message;
 	}
@@ -47,7 +47,10 @@ program
 		parseOptions();
 		output.log.nolf('Creating hook "' + hookName + '"...');
 		scaffold.createHook(getProjectRoot(), hookName, function(err) {
-			if (err) {throw err;}
+			if (err) {
+				output.log('');
+				throw err;
+			}
 			output.log(' Done.'.blue);
 		});
 	});
@@ -58,21 +61,50 @@ program
 	.description('Start the project hooks')
 	.action(function() {
 		parseOptions();
-		
+		output.log.nolf('Starting the application...');
+		scaffold.start(getProjectRoot(), function(err, project) {
+			if (err) {
+				output.log('');
+				throw err;
+			}
+			output.log((' Project running at PID ' + project.conf.pid + '.').blue);
+		});
+	});
+
+// Define the stop command
+program
+	.command('stop')
+	.description('Stop the project hooks')
+	.action(function() {
+		parseOptions();
+		output.log.nolf('Stopping the application...');
+		scaffold.stop(getProjectRoot(), function(err, project) {
+			if (err) {
+				output.log('');
+				throw err;
+			}
+			output.log(' Done.'.blue);
+		});
+	});
+
+// Define the restart command
+program
+	.command('restart')
+	.description('Restart the project hooks')
+	.action(function() {
+		parseOptions();
+		output.log.nolf('Restarting the application...');
+		scaffold.restart(getProjectRoot(), function(err, project) {
+			if (err) {
+				output.log('');
+				throw err;
+			}
+			output.log((' Project running at PID ' + project.conf.pid + '.').blue);
+		});
 	});
 
 // Go..
 program.parse(process.argv);
-
-
-
-
-
-
-
-
-
-
 
 // ------------------------------------------------------------------
 
@@ -94,6 +126,6 @@ function findUpTree(current, find) {
 
 function parseOptions() {
 	output.conf.silent = program.quiet;
-	output.conf.colors = program.colors;
+	output.conf.colors = program.color;
 }
 
