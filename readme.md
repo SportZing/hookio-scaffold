@@ -11,12 +11,24 @@ $ npm install hookio-scaffold -g
 ## Usage
 
 ```
-Usage: hookio-scaffold [options] [command]
+Usage: hios [options] [command]
 
 Commands:
 
+  init 
+  Create a new Hook.io project
+
   create-hook <name>
   Create a new hook
+
+  start 
+  Start the project hooks
+
+  stop 
+  Stop the project hooks
+
+  restart 
+  Restart the project hooks
 
 Options:
 
