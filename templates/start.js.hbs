@@ -21,7 +21,7 @@ spawn('core.js', function() {
 });
 
 // Make sure we clean up when exiting
-process.on('exit', function() {
+process.on('SIGTERM', function() {
 	processes.forEach(function(proc) {
 		proc.kill(0);
 	});
