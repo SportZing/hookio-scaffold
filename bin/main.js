@@ -55,6 +55,38 @@ program
 		});
 	});
 
+// Define the disable-hook command
+program
+	.command('disable-hook <name>')
+	.description('Disable a hook')
+	.action(function(hookName) {
+		parseOptions();
+		output.log.nolf('Disabling hook "' + hookName + '"...');
+		scaffold.disableHook(getProjectRoot(), hookName, function(err) {
+			if (err) {
+				output.log('');
+				throw err;
+			}
+			output.log(' Done.'.blue);
+		});
+	});
+
+// Define the enable-hook command
+program
+	.command('enable-hook <name>')
+	.description('Enable a hook')
+	.action(function(hookName) {
+		parseOptions();
+		output.log.nolf('Enabling hook "' + hookName + '"...');
+		scaffold.enableHook(getProjectRoot(), hookName, function(err) {
+			if (err) {
+				output.log('');
+				throw err;
+			}
+			output.log(' Done.'.blue);
+		});
+	});
+
 // Define the start command
 program
 	.command('start')

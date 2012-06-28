@@ -11,10 +11,12 @@ spawn('core.js', function() {
 
 	// Then spawn the various child hooks (after waiting a little while
 	// to make sure the core hook has started..)
-	var confFile = path.join(__dirname, 'hios.json');
-	require(confFile).hooks.forEach(
+	var conf = require(path.join(__dirname, 'hios.json'));
+	conf.hooks.forEach(
 		function(hook) {
-			spawn(hook + '/bin/' + hook + '.js');
+			if (conf.disabled.indexOf(hook) < 0) {
+				spawn(hook + '/bin/' + hook + '.js');
+			}
 		}
 	);
 
