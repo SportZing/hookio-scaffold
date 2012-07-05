@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var path      = require('path');
+var fs        = require('fs');
 var program   = require('commander');
 var scaffold  = require('../lib');
 var output    = require('./output');
@@ -146,7 +146,7 @@ function getProjectRoot() {
 
 function findUpTree(current, find) {
 	var file = path.join(current, find);
-	if (path.existsSync(file)) {
+	if (fs.existsSync(file)) {
 		return current;
 	}
 	if (current === '/') {
