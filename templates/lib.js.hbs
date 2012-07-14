@@ -1,13 +1,14 @@
 
-var Hook  = require('hook.io').Hook;
-var util  = require('util');
+var Hook    = require('hook.io').Hook;
+var util    = require('util');
+var conf    = require('node-conf');
+var consts  = require('consts');
 
 var {{{capitalized}}}Hook = exports.{{{capitalized}}}Hook = function(options) {
 	Hook.call(this, options);
 	
 	// Load configuration
-	this.config.use('file', { file: './config.json' });
-	this.conf = this.config.get('{{{hyphenated}}}');
+	this.conf = conf.load(consts.ENV)['{{{hyphenated}}}'];
 	
 	// Bind event listeners
 	this.on('hook::ready', function() {
